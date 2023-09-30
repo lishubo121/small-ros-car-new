@@ -1,0 +1,21 @@
+<launch>
+    <param name="robot_description" command="$(find xacro)/xacro $(find urdf02)/urdf/car.urdf.xacro" />
+
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find urdf02)/config/show_mycar.rviz" />
+    <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" output="screen" />
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" />
+    <!-- <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui" output="screen" /> -->
+
+    <!-- 添加控制驱动 -->
+    <node name="arbotix" pkg="arbotix_python" type="arbotix_driver" output="screen">
+        <rosparam file="$(find urdf01)/config/control.yaml" command="load" />
+        <param name="sim" value="true" />
+    </node>
+
+    <!-- 启动 gazebo -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch" />
+
+    <!-- 在 gazebo 中显示机器人模型 -->
+    <node pkg="gazebo_ros" type="spawn_model" name="model" args="-urdf -model mycar -param robot_description"  />
+
+</launch>
