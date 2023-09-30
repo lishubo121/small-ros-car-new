@@ -10,6 +10,8 @@
     <xacro:property name="support_y" value="0.0" /> <!-- 支架安装的y坐标 -->
     <xacro:property name="support_z" value="${base_link_length / 2 + support_length / 2}" /> <!-- 支架安装的z坐标:底盘高度 / 2 + 支架高度 / 2  -->
 
+    <xacro:property name="support_m" value="0.02" /> <!-- 支架质量 -->
+
     <link name="support">
         <visual>
             <geometry>
@@ -20,6 +22,16 @@
                 <color rgba="0.8 0.2 0.0 0.8" />
             </material>
         </visual>
+
+        <collision>
+            <geometry>
+                <cylinder radius="${support_radius}" length="${support_length}" />
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+        </collision>
+
+        <xacro:cylinder_inertial_matrix m="${support_m}" r="${support_radius}" h="${support_length}" />
+
     </link>
 
     <joint name="support2base_link" type="fixed">
@@ -28,6 +40,9 @@
         <origin xyz="${support_x} ${support_y} ${support_z}" />
     </joint>
 
+    <gazebo reference="support">
+        <material>Gazebo/White</material>
+    </gazebo>
 
     <!-- 雷达属性 -->
     <xacro:property name="laser_length" value="0.05" /> <!-- 雷达长度 -->
@@ -35,6 +50,8 @@
     <xacro:property name="laser_x" value="0.0" /> <!-- 雷达安装的x坐标 -->
     <xacro:property name="laser_y" value="0.0" /> <!-- 雷达安装的y坐标 -->
     <xacro:property name="laser_z" value="${support_length / 2 + laser_length / 2}" /> <!-- 雷达安装的z坐标:支架高度 / 2 + 雷达高度 / 2  -->
+
+    <xacro:property name="laser_m" value="0.1" /> <!-- 雷达质量 -->
 
     <!-- 雷达关节以及link -->
     <link name="laser">
@@ -45,6 +62,13 @@
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
             <material name="black" />
         </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="${laser_radius}" length="${laser_length}" />
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+        </collision>
+        <xacro:cylinder_inertial_matrix m="${laser_m}" r="${laser_radius}" h="${laser_length}" />
     </link>
 
     <joint name="laser2support" type="fixed">
@@ -52,4 +76,7 @@
         <child link="laser" />
         <origin xyz="${laser_x} ${laser_y} ${laser_z}" />
     </joint>
+    <gazebo reference="laser">
+        <material>Gazebo/Black</material>
+    </gazebo>
 </robot>
