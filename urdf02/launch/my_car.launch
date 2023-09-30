@@ -7,10 +7,11 @@
     <!-- <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui" output="screen" /> -->
 
     <!-- 添加控制驱动 -->
-    <node name="arbotix" pkg="arbotix_python" type="arbotix_driver" output="screen">
+    <!-- 如果说在跟gazebo进行仿真的时候就不要启动驱动了 -->
+    <!-- <node name="arbotix" pkg="arbotix_python" type="arbotix_driver" output="screen">
         <rosparam file="$(find urdf01)/config/control.yaml" command="load" />
         <param name="sim" value="true" />
-    </node>
+    </node> -->
 
     <!-- 启动 gazebo -->
     <!-- <include file="$(find gazebo_ros)/launch/empty_world.launch" /> -->
@@ -19,5 +20,7 @@
     </include>
     <!-- 在 gazebo 中显示机器人模型 -->
     <node pkg="gazebo_ros" type="spawn_model" name="model" args="-urdf -model mycar -param robot_description"  />
+
+    <node pkg="tf2_ros" type="static_transform_publisher" name="static_transform_publisher" args="0 0 0 -1.57 0 -1.57 /support /support_depth" />
 
 </launch>
