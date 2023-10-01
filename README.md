@@ -49,10 +49,3 @@ rosrun teleop_twist_keyboard teleop_twist_keyboard.py _speed:=0.8 _turn:=1.2
 
 
 
-
-
-
-
-
-
->>>>>>> planning
