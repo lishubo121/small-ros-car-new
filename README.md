@@ -11,9 +11,31 @@ new ros car
 
 创建新的工作空间，将这个三个个功能包放入src，编译:catkin_make
 
+1.gazebo模型演示
 运行打开节点：roslaunch urdf02 my_car.launch 
 
 运行键盘控制：
 rosrun teleop_twist_keyboard teleop_twist_keyboard.py _speed:=0.8 _turn:=1.2
+
+2.gmapping 功能包调用以及建图
+
+    首先安装功能包：sudo apt install ros-noetic-gmapping
+
+                 sudo apt install ros-noetic-map-server
+
+                 sudo apt install ros-noetic-navigation
+    
+    执行如下命令：
+                roslaunch urdf02 gmapping.launch
+
+                roslaunch nav_demo nav01_slam.launch
+
+                rosrun teleop_twist_keyboard teleop_twist_keyboard.py 
+
+    地图保存：roslaunch nav_demo nav02_mapsave.launch 
+
+
+
+
 
 
