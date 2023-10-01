@@ -34,6 +34,19 @@ rosrun teleop_twist_keyboard teleop_twist_keyboard.py _speed:=0.8 _turn:=1.2
 
     地图保存：roslaunch nav_demo nav02_mapsave.launch 
 
+    地图发布：roslaunch nav_demo nav03_mapserver.launch
+
+3.amcl定位功能展示
+
+            roslaunch urdf02 gmapping.launch
+
+            roslaunch nav_demo test_amcl.launch
+
+            rosrun teleop_twist_keyboard teleop_twist_keyboard.py 
+
+
+
+
 
 
 
