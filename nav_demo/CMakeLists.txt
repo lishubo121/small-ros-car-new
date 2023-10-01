@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(urdf02)
+project(nav_demo)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -8,14 +8,9 @@ project(urdf02)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  gazebo_plugins
-  gazebo_ros
-  gazebo_ros_control
-  urdf
-  xacro
-  gmapping 
-  map_server 
-  amcl 
+  amcl
+  gmapping
+  map_server
   move_base
 )
 
@@ -110,8 +105,8 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES urdf02
-#  CATKIN_DEPENDS gazebo_plugins gazebo_ros gazebo_ros_control urdf xacro
+#  LIBRARIES nav_demo
+#  CATKIN_DEPENDS amcl gmapping map_server move_base
 #  DEPENDS system_lib
 )
 
@@ -128,7 +123,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/urdf02.cpp
+#   src/${PROJECT_NAME}/nav_demo.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -139,7 +134,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/urdf02_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/nav_demo_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -203,7 +198,7 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_urdf02.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_nav_demo.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
