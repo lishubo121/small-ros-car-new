@@ -47,5 +47,11 @@ rosrun teleop_twist_keyboard teleop_twist_keyboard.py _speed:=0.8 _turn:=1.2
 
             rosrun teleop_twist_keyboard teleop_twist_keyboard.py 
 
+4.自动导航功能
+            roslaunch urdf02 gmapping.launch
+            
+            roslaunch nav_demo nav06_nagivation.launch 
+
+            最后在rviz上面给一个2D的navgoal即可进行正常的导航了。
 
 
